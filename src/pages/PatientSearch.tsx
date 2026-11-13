@@ -1,9 +1,9 @@
-// Public patient search page – shown at the root route (/)
+﻿// Public patient search page â€“ shown at the root route (/)
 // Design: light theme, mobile-first, one accent colour (cyan-700), system font, WCAG AA.
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { supabase } from '../lib/supabase'
 
-// ── Types ──────────────────────────────────────────────────────────────────────
+// â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 type ResourceSource = 'demo' | 'hospital' | 'phone'
 
@@ -39,7 +39,7 @@ const FILTER_CHIPS: FilterChip[] = ['All', 'General', 'Semi-special', 'Special',
 const TUMAKURU_LAT = 13.3379
 const TUMAKURU_LNG = 77.1173
 
-// ── Helpers ────────────────────────────────────────────────────────────────────
+// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function minutesAgo(isoString: string): number {
   return Math.floor((Date.now() - new Date(isoString).getTime()) / 60_000)
@@ -98,7 +98,7 @@ function attachDistances(
     })
 }
 
-// ── Source label config ────────────────────────────────────────────────────────
+// â”€â”€ Source label config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const SOURCE_CONFIG: Record<
   ResourceSource,
@@ -118,7 +118,7 @@ const SOURCE_CONFIG: Record<
   },
 }
 
-// ── Sub-components ─────────────────────────────────────────────────────────────
+// â”€â”€ Sub-components â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function ResourceRow({ res }: { res: Resource }) {
   const stale = isStale(res.updated_at)
@@ -154,14 +154,14 @@ function ResourceRow({ res }: { res: Resource }) {
       <p className={`text-sm font-semibold ${stale ? 'text-slate-400' : 'text-slate-700'}`}>
         {countText}
         {available != null && total != null && !stale && (
-          <span className="font-normal text-slate-500"> – Reported available – call to confirm</span>
+          <span className="font-normal text-slate-500"> â€“ Reported available â€“ call to confirm</span>
         )}
       </p>
 
       {/* Updated / stale line */}
       {stale ? (
         <p className="text-xs text-slate-500 italic">
-          ⚠ Unverified – call hospital to confirm (updated {relativeTime(res.updated_at)})
+          âš  Unverified â€“ call hospital to confirm (updated {relativeTime(res.updated_at)})
         </p>
       ) : (
         <p className="text-xs text-slate-400">Updated {relativeTime(res.updated_at)}</p>
@@ -190,7 +190,7 @@ function HospitalCard({ hospital }: { hospital: HospitalWithResources }) {
               title="This hospital has been verified"
               aria-label="Verified hospital"
             >
-              ✓ Verified
+              âœ“ Verified
             </span>
           )}
           {hospital.phone && (
@@ -199,7 +199,7 @@ function HospitalCard({ hospital }: { hospital: HospitalWithResources }) {
               aria-label={`Call ${hospital.name} at ${hospital.phone}`}
               className="inline-flex items-center gap-1.5 min-h-12 px-4 text-sm font-semibold text-white bg-cyan-700 hover:bg-cyan-800 rounded-xl focus-visible:outline-2 focus-visible:outline-cyan-700 focus-visible:outline-offset-2 transition-colors"
             >
-              📞 Call hospital
+              ðŸ“ž Call hospital
             </a>
           )}
         </div>
@@ -223,11 +223,11 @@ function HospitalCard({ hospital }: { hospital: HospitalWithResources }) {
   )
 }
 
-// ── Main page ─────────────────────────────────────────────────────────────────
+// â”€â”€ Main page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export default function PatientSearch() {
   // Raw data from Supabase (no distance attached yet)
-  const [rawHospitals, setRawHospitals] = useState<Omit<HospitalWithResources, 'distanceKm'>[]>([])
+
   // Displayed list (with distances, sorted, filtered)
   const [hospitals, setHospitals] = useState<HospitalWithResources[]>([])
   const [loading, setLoading] = useState(true)
@@ -243,12 +243,12 @@ export default function PatientSearch() {
   const rawRef = useRef<Omit<HospitalWithResources, 'distanceKm'>[]>([])
   const coordsRef = useRef<{ lat: number; lng: number } | null>(null)
 
-  // ── Derived: does any visible row have source = "demo"? ──────────────────────
+  // â”€â”€ Derived: does any visible row have source = "demo"? â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const hasDemoData = hospitals.some((h) =>
     h.resources.some((r) => (r.source ?? 'demo') === 'demo'),
   )
 
-  // ── Recompute displayed list whenever raw data, coords, or filter change ────
+  // â”€â”€ Recompute displayed list whenever raw data, coords, or filter change â”€â”€â”€â”€
 
   const recompute = useCallback(
     (
@@ -277,7 +277,7 @@ export default function PatientSearch() {
     [],
   )
 
-  // ── Data fetching ────────────────────────────────────────────────────────────
+  // â”€â”€ Data fetching â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   async function fetchAll(isRetry = false) {
     if (isRetry) setError(null)
@@ -308,42 +308,41 @@ export default function PatientSearch() {
     }))
 
     rawRef.current = hosps
-    setRawHospitals(hosps)
     setError(null)
     setLoading(false)
     recompute(hosps, coordsRef.current, activeFilter)
   }
 
-  // ── Realtime: patch a single resource row ───────────────────────────────────
+  // â”€â”€ Realtime: patch a single resource row â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   function applyResourceChange(payload: {
     eventType: 'INSERT' | 'UPDATE' | 'DELETE'
     new: Partial<Resource>
     old: Partial<Resource>
   }) {
-    setRawHospitals((prev) => {
-      const updated = prev.map((h) => {
-        let resources = [...h.resources]
-        if (payload.eventType === 'DELETE') {
-          resources = resources.filter((r) => r.id !== payload.old.id)
-        } else if (payload.eventType === 'INSERT') {
-          if (payload.new.hospital_id === h.id) {
-            resources = [...resources, payload.new as Resource]
-          }
-        } else if (payload.eventType === 'UPDATE') {
-          resources = resources.map((r) =>
-            r.id === payload.new.id ? { ...r, ...(payload.new as Resource) } : r,
-          )
+    const updated = rawRef.current.map((h) => {
+      let resources = [...h.resources]
+
+      if (payload.eventType === 'DELETE') {
+        resources = resources.filter((r) => r.id !== payload.old.id)
+      } else if (payload.eventType === 'INSERT') {
+        if (payload.new.hospital_id === h.id) {
+          resources = [...resources, payload.new as Resource]
         }
-        return { ...h, resources }
-      })
-      rawRef.current = updated
-      recompute(updated, coordsRef.current, activeFilter)
-      return updated
+      } else if (payload.eventType === 'UPDATE') {
+        resources = resources.map((r) =>
+          r.id === payload.new.id ? { ...r, ...(payload.new as Resource) } : r,
+        )
+      }
+
+      return { ...h, resources }
     })
+
+    rawRef.current = updated
+    recompute(updated, coordsRef.current, activeFilter)
   }
 
-  // ── Geolocation ──────────────────────────────────────────────────────────────
+  // Geolocation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   function requestLocation() {
     if (!navigator.geolocation) {
@@ -355,7 +354,7 @@ export default function PatientSearch() {
     setGeoError(null)
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        // Patient coords are NEVER sent to Supabase – used only for local distance calc
+        // Patient coords are NEVER sent to Supabase â€“ used only for local distance calc
         const coords = { lat: pos.coords.latitude, lng: pos.coords.longitude }
         coordsRef.current = coords
         setUserCoords(coords)
@@ -364,7 +363,7 @@ export default function PatientSearch() {
         recompute(rawRef.current, coords, activeFilter)
       },
       () => {
-        setGeoError('Location access denied – showing nearest to Tumakuru city centre instead.')
+        setGeoError('Location access denied â€“ showing nearest to Tumakuru city centre instead.')
         useFallback()
       },
       { timeout: 8000 },
@@ -380,7 +379,7 @@ export default function PatientSearch() {
     recompute(rawRef.current, coords, activeFilter)
   }
 
-  // ── Effects ──────────────────────────────────────────────────────────────────
+  // â”€â”€ Effects â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   useEffect(() => {
     fetchAll()
@@ -420,11 +419,11 @@ export default function PatientSearch() {
     recompute(rawRef.current, coordsRef.current, activeFilter)
   }, [activeFilter, recompute])
 
-  // ── Render ───────────────────────────────────────────────────────────────────
+  // â”€â”€ Render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
-      {/* ── Skip link (accessibility) ──────────────────────────────────────── */}
+      {/* â”€â”€ Skip link (accessibility) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <a
         href="#results"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-cyan-700 focus:text-white focus:rounded-lg"
@@ -432,35 +431,35 @@ export default function PatientSearch() {
         Skip to results
       </a>
 
-      {/* ── Offline / error banner ─────────────────────────────────────────── */}
+      {/* â”€â”€ Offline / error banner â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {(offline || error) && (
         <div
           role="alert"
           aria-live="assertive"
           className="bg-red-50 border-b border-red-300 text-red-800 text-sm px-4 py-3 flex items-center gap-2"
         >
-          <span aria-hidden="true">⚠</span>
+          <span aria-hidden="true">âš </span>
           <span>
             {offline
-              ? 'You are offline – data may be outdated. Reconnect to see live availability.'
+              ? 'You are offline â€“ data may be outdated. Reconnect to see live availability.'
               : `Could not load data: ${error}`}
           </span>
         </div>
       )}
 
-      {/* ── Demo data banner ───────────────────────────────────────────────── */}
+      {/* â”€â”€ Demo data banner â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {hasDemoData && (
         <div
           role="status"
           aria-live="polite"
           className="bg-amber-50 border-b border-amber-300 text-amber-800 text-sm px-4 py-3 flex items-center gap-2"
         >
-          <span aria-hidden="true">ℹ</span>
-          <span>Demo data – not real availability. Contact the hospital to confirm.</span>
+          <span aria-hidden="true">â„¹</span>
+          <span>Demo data â€“ not real availability. Contact the hospital to confirm.</span>
         </div>
       )}
 
-      {/* ── Geolocation error notice ────────────────────────────────────────── */}
+      {/* â”€â”€ Geolocation error notice â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {geoError && (
         <div
           role="status"
@@ -472,7 +471,7 @@ export default function PatientSearch() {
       )}
 
       <main className="max-w-xl mx-auto px-4 pb-16">
-        {/* ── Header ──────────────────────────────────────────────────────── */}
+        {/* â”€â”€ Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <header className="pt-6 pb-4 flex items-start justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-slate-900 leading-tight">
@@ -487,11 +486,11 @@ export default function PatientSearch() {
             aria-label="Emergency: Call 112"
             className="flex-shrink-0 inline-flex items-center gap-1.5 min-h-12 px-4 text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl focus-visible:outline-2 focus-visible:outline-red-700 focus-visible:outline-offset-2 transition-colors"
           >
-            🚨 Emergency? Call 112
+            ðŸš¨ Emergency? Call 112
           </a>
         </header>
 
-        {/* ── Location section ─────────────────────────────────────────────── */}
+        {/* â”€â”€ Location section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <section aria-label="Find hospitals near you" className="mb-5">
           <button
             onClick={requestLocation}
@@ -499,7 +498,7 @@ export default function PatientSearch() {
             aria-label="Find hospitals near my current location"
             className="w-full min-h-14 text-base font-bold text-white bg-cyan-700 hover:bg-cyan-800 disabled:opacity-60 rounded-2xl focus-visible:outline-2 focus-visible:outline-cyan-700 focus-visible:outline-offset-2 transition-colors flex items-center justify-center gap-2"
           >
-            {geoLoading ? 'Detecting location…' : '📍 Find hospitals near me'}
+            {geoLoading ? 'Detecting locationâ€¦' : 'ðŸ“ Find hospitals near me'}
           </button>
 
           {/* Fallback button */}
@@ -521,7 +520,7 @@ export default function PatientSearch() {
           )}
         </section>
 
-        {/* ── Filter chips ─────────────────────────────────────────────────── */}
+        {/* â”€â”€ Filter chips â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <section aria-label="Filter by bed category" className="mb-5">
           <div
             role="group"
@@ -549,12 +548,12 @@ export default function PatientSearch() {
           </div>
         </section>
 
-        {/* ── Results ──────────────────────────────────────────────────────── */}
+        {/* â”€â”€ Results â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <section id="results" aria-label="Hospital list" aria-live="polite">
           {/* Loading */}
           {loading && (
             <p className="text-slate-500 text-sm py-6 text-center">
-              Loading hospitals…
+              Loading hospitalsâ€¦
             </p>
           )}
 
@@ -577,7 +576,7 @@ export default function PatientSearch() {
           )}
         </section>
 
-        {/* ── Legend ───────────────────────────────────────────────────────── */}
+        {/* â”€â”€ Legend â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {!loading && hospitals.length > 0 && (
           <footer className="mt-8 pt-4 border-t border-slate-200">
             <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
@@ -598,7 +597,7 @@ export default function PatientSearch() {
               </li>
               <li className="flex items-center gap-2">
                 <span className="inline-block w-2 h-2 rounded-full bg-amber-300 flex-shrink-0" aria-hidden="true" />
-                Greyed-out row = Data over 2 hours old – call to confirm
+                Greyed-out row = Data over 2 hours old â€“ call to confirm
               </li>
             </ul>
             <p className="mt-3 text-xs text-slate-400">
@@ -610,3 +609,6 @@ export default function PatientSearch() {
     </div>
   )
 }
+
+
+

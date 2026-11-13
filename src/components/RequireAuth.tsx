@@ -1,5 +1,5 @@
-// Protected route wrapper – redirects unauthenticated users to /staff
-import { useEffect, useState, ReactNode } from 'react'
+﻿// Protected route wrapper â€“ redirects unauthenticated users to /staff
+import { useEffect, useState, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 
@@ -19,10 +19,12 @@ export default function RequireAuth({ children }: { children: ReactNode }) {
   if (checking) {
     return (
       <main className="min-h-screen bg-slate-950 text-white flex items-center justify-center">
-        <p className="text-slate-500 animate-pulse text-sm">Checking session…</p>
+        <p className="text-slate-500 animate-pulse text-sm">Checking sessionâ€¦</p>
       </main>
     )
   }
 
   return <>{children}</>
 }
+
+

@@ -1,5 +1,5 @@
-// Staff login page – email + password form using Supabase Auth; no signup option (SPEC rule 4)
-import { useState, FormEvent } from 'react'
+﻿// Staff login page â€“ email + password form using Supabase Auth; no signup option (SPEC rule 4)
+import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 
@@ -29,7 +29,7 @@ export default function StaffLogin() {
     <main className="min-h-screen bg-slate-950 text-white flex flex-col items-center justify-center gap-6 p-6">
       <h1 className="text-3xl font-bold tracking-tight text-cyan-400">Staff Portal</h1>
       <p className="text-slate-400 text-sm text-center max-w-xs">
-        Hospital staff only. Accounts are created by an admin — no self-signup.
+        Hospital staff only. Accounts are created by an admin â€” no self-signup.
       </p>
 
       <form
@@ -64,7 +64,7 @@ export default function StaffLogin() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-            placeholder="••••••••"
+            placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
           />
         </div>
 
@@ -79,9 +79,11 @@ export default function StaffLogin() {
           disabled={loading}
           className="bg-cyan-600 hover:bg-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg px-4 py-2 text-sm transition-colors"
         >
-          {loading ? 'Signing in…' : 'Sign in'}
+          {loading ? 'Signing inâ€¦' : 'Sign in'}
         </button>
       </form>
     </main>
   )
 }
+
+
