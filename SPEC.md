@@ -43,6 +43,25 @@
 
 ---
 
+## Design rules
+
+> Applied to the patient-facing `/` page only. Staff pages keep their existing dark theme.
+
+1. **Light theme, high contrast.** Background `#ffffff` / `#f8fafc`, text `#0f172a`. No dark backgrounds on the patient page.
+2. **One accent colour.** Calm blue-teal: `#0e7490` (Tailwind `cyan-700`) for primary actions and links. Active/hover darkens to `#155e75` (`cyan-800`). Do not add a second accent colour.
+3. **System font stack.** `system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`. No decorative web fonts on the patient page. Inter (loaded for staff pages) is acceptable if already in cache.
+4. **No decorative graphics or animations.** No hero images, no animated loaders, no transitions beyond a plain focus outline. Loading state is plain text only.
+5. **Mobile first.** All layout decisions start at 320 px. Use `sm:` breakpoints for wider screens. Body text minimum `1rem` (16 px). All interactive targets minimum `48px` tall (`min-h-12`).
+6. **10-second goal.** The "Find hospitals near me" button must be the first interactive element after the header so a patient can trigger location search immediately on page load.
+7. **Heading order.** `<h1>` = page title, `<h2>` = hospital name, `<h3>` = section sub-headings if needed. Never skip a level.
+8. **Visible focus outlines.** Every focusable element must have `focus-visible:outline-2 focus-visible:outline-cyan-700 focus-visible:outline-offset-2`. Never suppress the outline entirely.
+9. **WCAG AA colour contrast.** All text on its background must meet 4.5:1 for normal text, 3:1 for large text. Never use colour as the only signal — always pair with text or an icon.
+10. **Source labels.** Every bed row shows a source label from `resources.source`: `"demo"` → grey "Demo data", `"hospital"` → blue "Reported by hospital", `"phone"` → green "Confirmed by phone". If any visible row has `source = "demo"`, show a site-wide banner: "Demo data – not real availability."
+11. **Trust copy.** Use "Reported available – call to confirm". Never use "guaranteed" or "reserved".
+12. **Stale handling.** Data older than 2 hours is greyed out with both reduced opacity AND the text label "Unverified – call hospital to confirm". Colour change alone is never the only signal.
+
+---
+
 ## Stack
 
 | Layer | Choice |
